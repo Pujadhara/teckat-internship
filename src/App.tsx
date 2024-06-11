@@ -8,6 +8,14 @@ function App() {
   const [numberData, setNumberData] = useState<number>(0);
   const[num, setdata] = useState<number>(2);
 
+  const numberArray = [1,2,3,4,5,6,7,8];
+
+  const people = [
+    {name: "John", age: 30,status:"active"},
+    {name: "Jane", age: 25,status:"inactive"},
+    {name: "Mike", age: 35,status:"active"},
+  ];
+
   useEffect(() => {
     addData();
   },[numberData , num]);
@@ -41,6 +49,51 @@ function App() {
 
     <button onClick={mulData} className={`number ${num}`}>multiply</button>
     <div>Multiply data : {num}</div>
+
+    {/* {map method starts} */}
+
+    {numberArray.map((item, i) => {
+      return <div key={i}>{item}</div>
+    })}
+
+    {/* {map with object array} */}
+
+    {people.map((item, i) => {
+      return (
+        <div key={i}>
+          {item.status === "active" && (
+            <>
+            <div>name: {item.name}</div>
+            <div>age: {item.age}</div>
+
+            <br/>
+            </>
+          )}
+        </div>
+      )
+    })}
+  <hr />
+
+  {people.map((item, i) => {
+      return (
+        <div key={i}>
+          {item.status === "active" ? (
+            <>
+            <div>name: {item.name}</div>
+            <div>age: {item.age}</div>
+
+            <br/>
+            </>
+          ): (
+        <>
+        <div>inactive</div>
+        <br />
+        </>
+      )}
+      </div>
+      );
+    })}
+
 
     </>
   );
