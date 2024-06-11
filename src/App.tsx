@@ -4,15 +4,44 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [data, setData] = useState<number>();
+  const [data, setData] = useState<number>(0);
+  const [numberData, setNumberData] = useState<number>(0);
+  const[num, setdata] = useState<number>(2);
 
   useEffect(() => {
-    setData(66879);
-  },[]);
+    addData();
+  },[numberData , num]);
+
+  const addData = () => {
+    const oldData = data;
+    const newData = oldData + 1;
+    setData(newData);
+    console.log(newData);
+  };
+
+  const decrementData = () => {
+    setNumberData(numberData - 1);
+  };
+
+  const mulData = ()=> {
+    setdata(num * 2);
+  }
 
   return(
     <>
-    <div>{data}</div>
+    <button title="title" onClick={addData} className={`number ${data}`}>
+      add data
+    </button>
+    <div>Incremented data : {data}</div>
+
+    <br />
+
+    <button onClick={decrementData} className={`number ${numberData}`}>decrement</button>
+    <div>decremented data : {numberData}</div>
+
+    <button onClick={mulData} className={`number ${num}`}>multiply</button>
+    <div>Multiply data : {num}</div>
+
     </>
   );
 }
